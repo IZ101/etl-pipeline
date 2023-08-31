@@ -7,7 +7,6 @@
 
 ### Requirements
 - The minimum requirement is Python 3+
-
 ### Instructions on how to execute the code
 - Install all the libraries you will need to execute main.py
 
