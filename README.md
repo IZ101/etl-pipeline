@@ -2,7 +2,7 @@
 
 ### Introduction
 You will build an ETL pipeline to perform the range of tasks as follows:
-- Extract transactional data from two tables online_transactions and stock_code from Redshift
+- Extract transactional data ('online_transactions','stock_code') containing 4000+ invoices from Redshift
 - Join the tables and clean any missing data for customer id, stock code and stock description columns
 - Transform the data by finding and removing full duplicates
 - Load the transformed data to an s3 bucket
