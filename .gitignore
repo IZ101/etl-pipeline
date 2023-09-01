@@ -6,6 +6,7 @@ data
 .env
 __pycache__/
 .idea/
-main_iz.py
+main_test.py
 src_test
 notebooks
+demo

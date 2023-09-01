@@ -36,21 +36,22 @@ def extract_transactional_data(dbname, host, port, user, password):
     # connect to redshift
     connect = connect_to_redshift(dbname, host, port, user, password)
 
-    query = '''SELECT t1.invoice,
-                      t1.stock_code, 
-                      t1.quantity, 
-                      t1.price, 
-                      t1.customer_id, 
-                      t1.country,
+    query = '''SELECT t1.invoice, 
+                    t1.stock_code, 
+                    t1.quantity, 
+                    t1.price, 
+                    t1.customer_id, 
+                    t1.country,
+                    t1.quantity*t1.price as total_order_value,
                     CASE WHEN t2.description IS NULL THEN 'Unknown' 
                         ELSE description END AS description,
                         CAST(t1.invoice_date AS datetime) AS invoice_date
-            FROM bootcamp.online_transactions t1
-            LEFT JOIN (SELECT *
-                     FROM bootcamp.stock_description
-                     WHERE description <> '?') t2 ON t1.stock_code = t2.stock_code
-            WHERE t1.stock_code NOT IN ('BANK CHARGES', 'POST', 'D', 'M', 'CRUK')
-            AND customer_id <> '';'''
+                FROM bootcamp.online_transactions t1
+                LEFT JOIN (SELECT *
+                         FROM bootcamp.stock_description
+                         WHERE description <> '?') t2 ON t1.stock_code = t2.stock_code
+                         WHERE t1.stock_code NOT IN ('BANK CHARGES', 'POST', 'D', 'M', 'CRUK')
+                         AND customer_id <> '';'''
 
     # read the dataframe and show 5 top lines
     joined_table_clean = pd.read_sql(query, connect)

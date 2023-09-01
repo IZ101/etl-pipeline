@@ -1,8 +1,8 @@
 import os
 
 # library to read passwords
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 # import etl functions
 from src.extract import extract_transactional_data
@@ -29,7 +29,6 @@ print('The shape of the data after removing duplicates is: ',duplicates.shape)
 # run function to connect and load data to s3 with provided credentials
 
 s3_bucket = 'july-bootcamp'
-key = 'etl_pipeline/iz_online_transaction_v2.pkl'
-df = transactional_data
+key = 'etl_pipeline/docker/iz_online_transaction_v2.pkl'
 
-df_to_s3(df, key, s3_bucket, aws_access_key_id, aws_secret_access_key_id)
+df_to_s3(transactional_data, key, s3_bucket, aws_access_key_id, aws_secret_access_key_id)
