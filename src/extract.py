@@ -45,7 +45,7 @@ def extract_transactional_data(dbname, host, port, user, password):
                     t1.quantity*t1.price as total_order_value,
                     CASE WHEN t2.description IS NULL THEN 'Unknown' 
                         ELSE description END AS description,
-                        CAST(t1.invoice_date AS datetime) AS invoice_date
+                    CAST(t1.invoice_date AS datetime) AS invoice_date
                 FROM bootcamp.online_transactions t1
                 LEFT JOIN (SELECT *
                          FROM bootcamp.stock_description
